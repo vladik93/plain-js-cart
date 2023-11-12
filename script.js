@@ -1,12 +1,15 @@
 const productsEl = document.getElementById("products");
 
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("CART")) || [];
 
 const generateProducts = () => {
   productsEl.innerHTML = products
     .map(({ id, title, description, price, image }) => {
+      const found = cart.find((x) => x.id === id);
       return `
-      <div class="product" id=${id} onclick="addToCart(${id})">
+      <div class="product ${
+        found ? "selected" : ""
+      }" id=${id} onclick="addToCart(${id})">
         <img src="./assets/products/${image}" class="image" />
         <div class="product-content">
           <h2 class="product-title">${title}</h2>
@@ -39,6 +42,8 @@ const addToCart = (id) => {
 
   toggleCartIndicator();
   updateCartAmount();
+
+  localStorage.setItem("CART", JSON.stringify(cart));
 };
 
 const toggleCartIndicator = () => {
@@ -66,3 +71,4 @@ const updateCartAmount = () => {
 };
 
 generateProducts();
+updateCartAmount();
