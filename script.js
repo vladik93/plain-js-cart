@@ -1,4 +1,5 @@
 const productsEl = document.getElementById("products");
+const cartItemsEl = document.getElementById("cart-items");
 
 let cart = JSON.parse(localStorage.getItem("CART")) || [];
 
@@ -70,5 +71,36 @@ const updateCartAmount = () => {
   cartAmountIndicatorEl.innerHTML = counter;
 };
 
+const generateCartItems = () => {
+  cartItemsEl.innerHTML += cart.map((item) => {
+    return `
+        <div class="cart-item">
+                <div class="cart-item-image-cont">
+                  <img
+                    src="./assets/products/headphones.jpg"
+                    class="image cart-item-image"
+                  />
+                </div>
+                <div class="cart-item-content-container">
+                  <div class="cart-item-content">
+                    <h2 class="cart-item-title">Earphones</h2>
+                    <h2 class="cart-item-title">$2.50</h2>
+                    <p class="cart-item-description">Item description text here</p>
+                  </div>
+                  <div class="cart-item-actions">
+                    <button class="cart-item-increment button">
+                      <img src="./assets/icons/minus.svg" class="icon-sm" />
+                    </button>
+                    <span>0</span>
+                    <button class="cart-item-increment button">
+                      <img src="./assets/icons/plus.svg" class="icon-sm" />
+                    </button>
+                  </div>
+                </div>
+              </div>`;
+  });
+};
+
 generateProducts();
 updateCartAmount();
+generateCartItems();
