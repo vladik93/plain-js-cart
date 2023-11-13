@@ -16,19 +16,13 @@
   <body>
     <header class="header">
       <h2>LOGO</h2>
-      <button class="cart-button">
+      <button class="cart-button" onclick="generateCartModal()">
         <img src="./assets/cart.svg" class="icon-lg" />
         <span id="cart-amount-indicator" class="cart-amount-indicator">0</span>
       </button>
     </header>
     <div id="products" class="products">
       <!-- PRODUCTS FROM script.js HERE -->
-    </div>
-    <div class="cart-modal">
-      <h2>My Cart</h2>
-      <div id="cart-items" class="cart-items">
-        <!-- CART ITEMS FROM script.js HERE -->
-      </div>
     </div>
 
     <script src="./products.js"></script>
